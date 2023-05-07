@@ -8,4 +8,4 @@
 #else
 	#error hazel only supprt window
 #endif // 
-
+#define BIT(x) 1<<x

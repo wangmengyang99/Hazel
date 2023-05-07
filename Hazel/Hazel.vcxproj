@@ -76,7 +76,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HZ_PLATFORM_WINOWS;HZ_BUILD_DLL;HZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>vendor\include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -92,12 +93,13 @@
       <ImportLibrary>..\bin\Debug-windows-x86_64\Hazel\Hazel.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Hazel\Hazel.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Hazel\Hazel.dll "..\bin\Debug-windows-x86_64\sandbox" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Hazel\Hazel.dll "..\bin\Debug-windows-x86_64\sandbox" &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Hazel\Hazel.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Hazel\Hazel.dll "..\bin\Debug-windows-x86_64\Sandbox" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Hazel\Hazel.dll "..\bin\Debug-windows-x86_64\Sandbox" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HZ_PLATFORM_WINOWS;HZ_BUILD_DLL;HZ_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>vendor\include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -117,12 +119,13 @@
       <ImportLibrary>..\bin\Release-windows-x86_64\Hazel\Hazel.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\Hazel\Hazel.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Hazel\Hazel.dll "..\bin\Release-windows-x86_64\sandbox" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Hazel\Hazel.dll "..\bin\Release-windows-x86_64\sandbox" &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\Hazel\Hazel.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Hazel\Hazel.dll "..\bin\Release-windows-x86_64\Sandbox" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Hazel\Hazel.dll "..\bin\Release-windows-x86_64\Sandbox" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>hzpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>HZ_PLATFORM_WINOWS;HZ_BUILD_DLL;HZ_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>vendor\include;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -142,7 +145,7 @@
       <ImportLibrary>..\bin\Dist-windows-x86_64\Hazel\Hazel.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Hazel\Hazel.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Hazel\Hazel.dll "..\bin\Dist-windows-x86_64\sandbox" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Hazel\Hazel.dll "..\bin\Dist-windows-x86_64\sandbox" &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Hazel\Hazel.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Hazel\Hazel.dll "..\bin\Dist-windows-x86_64\Sandbox" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Hazel\Hazel.dll "..\bin\Dist-windows-x86_64\Sandbox" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -150,11 +153,19 @@
     <ClInclude Include="src\Hazel\Application.h" />
     <ClInclude Include="src\Hazel\Core.h" />
     <ClInclude Include="src\Hazel\EntryPoint.h" />
+    <ClInclude Include="src\Hazel\Event\ApplicationEvent.h" />
+    <ClInclude Include="src\Hazel\Event\Event.h" />
+    <ClInclude Include="src\Hazel\Event\KeyEvent.h" />
+    <ClInclude Include="src\Hazel\Event\MouseEvent.h" />
     <ClInclude Include="src\Hazel\Log.h" />
+    <ClInclude Include="src\hzpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Hazel\Application.cpp" />
     <ClCompile Include="src\Hazel\Log.cpp" />
+    <ClCompile Include="src\hzpch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
